@@ -12,6 +12,8 @@ class Brick
    this.w = w;
    this.h = h;
    this.c = c;
+   // mjimjimji
+   
  }
  
  public void Show ()
