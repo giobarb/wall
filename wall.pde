@@ -93,3 +93,8 @@ void draw ()
   w.Change(25,25);
   w.Show();
 }
+
+/*
+DZ 1. ronacvetnuje kurpucu v stene novuj constructor v kotorum nebudut ukayan cvet i budut ivo padbirat drugim obroyom 
+   2. slucajnaje kolicistvo sten i ani dvigajutsa i v etom nomer 1 
+*/
