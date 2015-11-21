@@ -33,22 +33,24 @@ class Brick
 
  class Wall 
 {
- public int width,height,widthB,heightB,x,y,move_x,move_y;
+ public int width,height,widthB,heightB,x,y,move_x,move_y,walls;
  public color clr;
  private ArrayList<Brick> bricks = new ArrayList<Brick>();
  
- public Wall (color c,int w,int h,int wB,int hB,int _x,int _y)
+ public Wall (int w,int h,int wB,int hB,int _x,int _y,int W)
  {
    width = w;
    height = h;
    widthB = wB;
-   heightB = hB;   
+   heightB = hB;
+   walls = W;
    clr = c;
    x = _x;
    y = _y;
-   for ( int i = 0;i < h ;i++)
-     for (int j = 0; j < w;j++)
-       bricks.add (new Brick( x+wB*j , y+hB*i , wB, hB, c));
+   for ( int k = 0;k < W;k++);
+     for ( int i = 0;i < h ;i++)
+       for (int j = 0; j < w;j++)
+         bricks.add (new Brick( x+wB*j , y+hB*i , wB, hB, random (int) (0,100)));
  }
  
  public void Show ()
@@ -63,16 +65,15 @@ class Brick
     {
     bricks.get(i).x += mx;
     bricks.get(i).y += my;
-    bricks.get(i).fill(random(int)(0,256), random(int)(0,256), random(int)(0,256))
     }     
-   } 
+ } 
 }
 
 ArrayList<Brick> list;
 
 void setup ()
 {
-  w = new Wall(80,6,3,30,15,30,30);
+  w = new Wall(6,3,30,15,30,30);
   int i = 0 ;
   size (500,500);
   background (204, 102, 0);
