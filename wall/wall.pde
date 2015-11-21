@@ -1,4 +1,7 @@
 Wall w;
+int countW;
+int clr1;
+Wall [] Walls;
 
 class Brick 
 {
@@ -33,26 +36,23 @@ class Brick
 
  class Wall 
 {
- public int width,height,widthB,heightB,x,y,move_x,move_y,walls;
+ public int width,height,widthB,heightB,x,y,move_x,move_y;
  public color clr;
  private ArrayList<Brick> bricks = new ArrayList<Brick>();
  
- public Wall (int w,int h,int wB,int hB,int _x,int _y,int W)
+ public Wall (color c,int w,int h,int wB,int hB,int _x,int _y)
  {
    width = w;
    height = h;
    widthB = wB;
-   heightB = hB;
-   walls = W;
-   clr = c;
+   heightB = hB;   
+   clr = (c == -1 ? color(random (0,256), random (0,256), random (0,256)) : c);
    x = _x;
    y = _y;
-   for ( int k = 0;k < W;k++);
      for ( int i = 0;i < h ;i++)
        for (int j = 0; j < w;j++)
-         bricks.add (new Brick( x+wB*j , y+hB*i , wB, hB, random (int) (0,100)));
+          bricks.add(new Brick( x+wB*j , y+hB*i , wB, hB, c == -2 ? color(random (0,256), random (0,256), random (0,256)) : clr));
  }
- 
  public void Show ()
  {
    for ( int i = 0;i < bricks.size();i++)
@@ -66,34 +66,29 @@ class Brick
     bricks.get(i).x += mx;
     bricks.get(i).y += my;
     }     
- } 
+ }
 }
 
 ArrayList<Brick> list;
 
 void setup ()
 {
-  w = new Wall(6,3,30,15,30,30);
+  size (500,500);  
+  countW = (int) random(1 , 10);
+  Walls = new Wall [countW]; 
+  for (int i = 0 ; i < countW ; i++)
+  {
+    clr1 = (int) random (-3,-1);  
+    Walls[i] = new Wall(clr1,6,3,30,15,(int) random (0,width-6*30),(int) random (0,height-3*15));
+  }
   int i = 0 ;
-  size (500,500);
   background (204, 102, 0);
 }
 
 void draw ()
 {
-  
-//  for ( int i = 0; i < list.size() ; i++)
-//  {
-//    int moveX = (int) random ( -25,25);
-//    int moveY = (int) random ( -25,25);    
-//    Brick b = list.get(i);
-//    b.Show();
-//    b.x += moveX;
-//    b.y += moveY;
-//  }
- 
-  w.Change(25,25);
-  w.Show();
+  for (int i = 0 ; i < countW ; i++)
+    Walls[i].Show();
 }
 
 /*
